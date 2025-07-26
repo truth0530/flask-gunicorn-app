@@ -19,6 +19,21 @@ This repository exists to provide a clear, reproducible example of this discrepa
 
 If you have any insights into what could cause this difference between the shell environment and the Python runtime environment on Railway, your advice would be greatly appreciated. Please feel free to open an issue or reach out.
 
+---
+
+## Current Debugging Status
+
+In the meantime, I'm continuing to debug this on my side. My current hypothesis, based on the discrepancy between the shell and the Python runtime, is that eventlet's monkey-patching feature might be conflicting with Railway's network environment. I am currently running tests inside the container to confirm this theory.
+
+I was wondering if you had any thoughts on this. In your experience, do you think the eventlet worker is generally not a good fit for Railway?
+
+My plan, after I confirm the eventlet issue, is to try one of these two solutions:
+
+1. Change the worker class to sync to see if a standard worker resolves the DNS issue.
+2. Switch to a different async worker like gevent (by replacing eventlet with gevent in requirements.txt).
+
+Do you think this is a reasonable approach, or would you recommend a better path? Any advice you have would be extremely helpful. Thank you.
+
 ## Project Structure
 
 ```
