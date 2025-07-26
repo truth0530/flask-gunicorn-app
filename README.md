@@ -4,11 +4,14 @@
 
 This repository was created to isolate and demonstrate a persistent deployment issue on the Railway platform.
 
-**The Problem:**
+**The Issue:**
 
 My main production application is experiencing a critical outbound DNS failure (`[Errno -3] Lookup timed out`) when making network calls from within its Python (Gunicorn/eventlet) runtime.
 
 Railway support has confirmed that basic DNS resolution **succeeds** from the container's interactive shell (using the `dig` command). However, this minimal Flask application proves that the exact same DNS lookup **consistently fails** when initiated by a standard Python process (`socket.gethostbyname`).
+
+You can see a live demonstration of this failure on my deployment of this exact repository here:
+**flask-gunicorn-app-production.up.railway.app**
 
 This repository exists to provide a clear, reproducible example of this discrepancy.
 
